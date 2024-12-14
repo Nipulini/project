@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Fashion Store</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">Tredyne</a>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html" class="home-link">Home</a></li>
+                <li><a href="shop.html" class="shop-link">Shop</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Shop Page Content -->
+    <main>
+        <!-- Category Products (dynamic) -->
+        <section id="product-list" class="product-container"></section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Tredyne. All Rights Reserved.</p>
+            <div class="social-media">
+                <a href="#">Facebook</a> | <a href="#">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Function to set the active link in the navigation
+        function setActiveLink() {
+            const currentPage = window.location.pathname;
+            const links = document.querySelectorAll('.nav ul li a');
+            
+            // Remove 'active' class from all links
+            links.forEach(link => link.classList.remove('active'));
+            
+            // Add 'active' class to the current page's link
+            if (currentPage.includes('shop.html')) {
+                document.querySelector('.shop-link').classList.add('active');
+            } else if (currentPage.includes('index.html')) {
+                document.querySelector('.home-link').classList.add('active');
+            }
+        }
+
+        // Get the category from the URL query string
+        const urlParams = new URLSearchParams(window.location.search);
+        const category = urlParams.get('category'); // e.g., 'dresses'
+
+        // Example product data for categories
+        const products = {
+            dresses: [
+                { name: 'Red Dress', price: '$50', img: 'images/dress1.jpg' },
+                { name: 'Blue Dress', price: '$60', img: 'images/dress2.jpg' },
+            ],
+            skirts: [
+                { name: 'Pleated Skirt', price: '$40', img: 'images/skirt1.jpg' },
+                { name: 'A-Line Skirt', price: '$45', img: 'images/skirt2.jpg' },
+            ],
+            jeans: [
+                { name: 'Skinny Jeans', price: '$70', img: 'images/jeans1.jpg' },
+                { name: 'Bootcut Jeans', price: '$75', img: 'images/jeans2.jpg' },
+            ],
+            blouses: [
+                { name: 'Floral Blouse', price: '$30', img: 'images/blouse1.jpg' },
+                { name: 'Silk Blouse', price: '$80', img: 'images/blouse2.jpg' },
+            ]
+        };
+
+        // Dynamically display products based on category
+        function displayProducts(category) {
+            const productContainer = document.getElementById('product-list');
+            const productCategory = products[category];
+
+            if (productCategory) {
+                productCategory.forEach(product => {
+                    const productDiv = document.createElement('div');
+                    productDiv.classList.add('product-item');
+                    productDiv.innerHTML = `
+                        <img src="${product.img}" alt="${product.name}">
+                        <h3>${product.name}</h3>
+                        <p>${product.price}</p>
+                    `;
+                    productContainer.appendChild(productDiv);
+                });
+            } else {
+                productContainer.innerHTML = '<p>No products found for this category.</p>';
+            }
+        }
+
+        // Call function to display products
+        if (category) {
+            displayProducts(category);
+        } else {
+            document.getElementById('product-list').innerHTML = '<p>Invalid category.</p>';
+        }
+
+        // Call function to highlight the active link
+        setActiveLink();
+    </script>
+</body>
+</html>
