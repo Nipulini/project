@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - Fashion Store</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">Tredyne</a>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html" class="home-link">Home</a></li>
+                <li><a href="shop.html" class="shop-link">Shop</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="cart.html"><img src="images/cart-icon.png" alt="Cart" class="cart-icon"></a></li>
+                <li><a href="profile.html"><img src="images/profile-icon.png" alt="Profile" class="profile-icon"></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Cart Content -->
+    <main>
+        <section id="cart">
+            <h1>Your Cart</h1>
+            <div id="cart-items" class="cart-items-container"></div>
+            <div class="cart-summary">
+                <h3>Total: <span id="cart-total">$0</span></h3>
+                <button id="checkout-btn" onclick="proceedToCheckout()">Checkout</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Tredyne. All Rights Reserved.</p>
+            <div class="social-media">
+                <a href="#">Facebook</a> | <a href="#">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Load cart items from localStorage
+        function loadCart() {
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartContainer = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            let total = 0;
+
+            cartContainer.innerHTML = ''; // Clear previous items
+
+            if (cartItems.length === 0) {
+                cartContainer.innerHTML = '<p>Your cart is empty.</p>';
+                cartTotal.textContent = '$0.00'; // Reset total to $0
+                document.getElementById('checkout-btn').disabled = true; // Disable checkout button
+                return;
+            }
+
+            cartItems.forEach((item, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.classList.add('cart-item');
+                itemDiv.innerHTML = `
+                    <div class="item-details">
+                        <span class="item-name">${item.name}</span>
+                        <span class="item-price">${item.price}</span>
+                        <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+                    </div>
+                `;
+                cartContainer.appendChild(itemDiv);
+
+                // Calculate total price (removing '$' and converting to a number)
+                total += parseFloat(item.price.replace('$', ''));
+            });
+
+            cartTotal.textContent = `$${total.toFixed(2)}`; // Update total
+            document.getElementById('checkout-btn').disabled = false; // Enable checkout button
+        }
+
+        // Remove item from cart
+        function removeFromCart(index) {
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            cartItems.splice(index, 1); // Remove item by index
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+            loadCart(); // Reload cart
+        }
+
+        // Proceed to checkout
+        function proceedToCheckout() {
+            const userLoggedIn = localStorage.getItem('userLoggedIn'); // Check if user is logged in (use sessionStorage, localStorage, or cookies)
+
+            if (!userLoggedIn) {
+                alert('You need to log in to proceed with checkout.');
+                // Redirect to login page
+                window.location.href = 'login.html';
+            } else {
+                alert('Redirecting to checkout...');
+                // Proceed to checkout page (for example, a checkout page where payment is processed)
+                window.location.href = 'checkout.html'; // Change this to your checkout page
+            }
+        }
+
+        // Initialize cart
+        loadCart();
+    </script>
+</body>
+</html>

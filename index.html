@@ -9,24 +9,47 @@
         .header .logo a {
             font-family: 'Brush Script MT', cursive;
         }
+
+        /* Inline CSS to make sure the background is applied */
+        body {
+            background-image: url('images/wallpaper.png'); /* Replace with your image path */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+        }
+
+        /* Add styles for the homepage */
+        #home {
+            text-align: center;
+            padding: 50px 0;
+            color: #fff;
+        }
+        #home h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        #home p {
+            font-size: 24px;
+        }
     </style>
 </head>
 <body>
-   <!-- Header -->
-<header class="header">
-    <div class="logo">
-        <a href="index.html">Tredyne</a>
-    </div>
-    <nav class="nav">
-        <ul>
-            <li><a href="index.html" class="home-link">Home</a></li>
-            <li><a href="shop.html" class="shop-link">Shop</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-</header>
-
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">Tredyne</a>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html" class="home-link">Home</a></li>
+                <li><a href="shop.html" class="shop-link">Shop</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <!-- Main Content -->
     <main>
@@ -35,26 +58,25 @@
             <p>Your one-stop destination for all your fashion needs!</p>
         </section>
 
-        
         <!-- Category Links (on homepage) -->
-<section id="categories" class="category-container">
-    <div class="category-box" onclick="window.location.href='shop.html?category=dresses';">
-        <img src="images/dresses.avif" alt="Dresses">
-        <p>Dresses</p>
-    </div>
-    <div class="category-box" onclick="window.location.href='shop.html?category=skirts';">
-        <img src="images/skirts.jpeg" alt="Skirts">
-        <p>Skirts</p>
-    </div>
-    <div class="category-box" onclick="window.location.href='shop.html?category=jeans';">
-        <img src="images/jeans.jpeg" alt="Jeans">
-        <p>Jeans</p>
-    </div>
-    <div class="category-box" onclick="window.location.href='shop.html?category=blouses';">
-        <img src="images/blouses.jpeg" alt="Blouses">
-        <p>Blouses</p>
-    </div>
-</section>
+        <section id="categories" class="category-container">
+            <div class="category-box" onclick="window.location.href='shop.html?category=dresses';">
+                <img src="images/dresses.avif" alt="Dresses">
+                <p>Dresses</p>
+            </div>
+            <div class="category-box" onclick="window.location.href='shop.html?category=skirts';">
+                <img src="images/skirts.jpeg" alt="Skirts">
+                <p>Skirts</p>
+            </div>
+            <div class="category-box" onclick="window.location.href='shop.html?category=jeans';">
+                <img src="images/jeans.jpeg" alt="Jeans">
+                <p>Jeans</p>
+            </div>
+            <div class="category-box" onclick="window.location.href='shop.html?category=blouses';">
+                <img src="images/blouses.jpeg" alt="Tops">
+                <p>Tops</p>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
@@ -66,6 +88,7 @@
             </div>
         </div>
     </footer>
+
     <script>
         // Function to set the active link in the navigation
         function setActiveLink() {
@@ -88,4 +111,3 @@
     </script>
 </body>
 </html>
-

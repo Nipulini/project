@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="logo">
             <a href="index.html">Tredyne</a>
@@ -18,13 +17,14 @@
                 <li><a href="shop.html" class="shop-link">Shop</a></li>
                 <li><a href="#about">About Us</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="cart.html"><img src="images/cart-icon.png" alt="Cart" class="cart-icon"></a></li>
+                <li><a href="profile.html"><img src="images/profile-icon.png" alt="Profile" class="profile-icon"></a></li>
             </ul>
         </nav>
     </header>
 
     <!-- Shop Page Content -->
     <main>
-        <!-- Category Products (dynamic) -->
         <section id="product-list" class="product-container"></section>
     </main>
 
@@ -39,15 +39,11 @@
     </footer>
 
     <script>
-        // Function to set the active link in the navigation
+        // Set active link in the navigation
         function setActiveLink() {
             const currentPage = window.location.pathname;
             const links = document.querySelectorAll('.nav ul li a');
-            
-            // Remove 'active' class from all links
             links.forEach(link => link.classList.remove('active'));
-            
-            // Add 'active' class to the current page's link
             if (currentPage.includes('shop.html')) {
                 document.querySelector('.shop-link').classList.add('active');
             } else if (currentPage.includes('index.html')) {
@@ -55,33 +51,71 @@
             }
         }
 
-        // Get the category from the URL query string
+        // Extract category from URL query string
         const urlParams = new URLSearchParams(window.location.search);
-        const category = urlParams.get('category'); // e.g., 'dresses'
+        const category = urlParams.get('category');
 
-        // Example product data for categories
+        // Example product data
         const products = {
             dresses: [
-                { name: 'Red Dress', price: '$50', img: 'images/dress1.jpg' },
-                { name: 'Blue Dress', price: '$60', img: 'images/dress2.jpg' },
+                { name: 'Beach Mini', price: '$50', img: 'images/dresses/beach mini dress.jpeg' },
+                { name: 'Black Mini', price: '$60', img: 'images/dresses/black mini.jpeg' },
+                { name: 'Blue Elegant', price: '$55', img: 'images/dresses/blue elegant.jpeg' },
+                { name: 'Church Dress', price: '$60', img: 'images/dresses/church dress.jpg' },
+                { name: 'Classic Red', price: '$70', img: 'images/dresses/classic red.jpeg' },
+                { name: 'Green Code', price: '$50', img: 'images/dresses/green code.jpeg' },
+                { name: 'Green Dragon', price: '$80', img: 'images/dresses/Greentwo.jpeg' },
+                { name: 'Modest Black', price: '$75', img: 'images/dresses/modest black.jpeg' },
+                { name: 'Pink Marble', price: '$50', img: 'images/dresses/Pink.jpg' },
             ],
             skirts: [
-                { name: 'Pleated Skirt', price: '$40', img: 'images/skirt1.jpg' },
-                { name: 'A-Line Skirt', price: '$45', img: 'images/skirt2.jpg' },
+                { name: 'Black Elegant', price: '$40', img: 'images/Skirts/Black Elegant.jpeg' },
+                { name: 'Elegant Green', price: '$45', img: 'images/Skirts/Elegant Green.jpeg' },
+                { name: 'Floral Mid', price: '$50', img: 'images/Skirts/floral mid.jpeg' },
+                { name: 'Green Slim', price: '$65', img: 'images/Skirts/Green slim.jpeg' },
+                { name: 'Mini Skirt', price: '$45', img: 'images/Skirts/Mini.jpeg' },
+                { name: 'Long Green', price: '$40', img: 'images/Skirts/Long Slim Green.jpeg' },
+                { name: 'Pleated Skirt', price: '$40', img: 'images/Skirts/Pleated Skirt.jpeg' },
+                { name: 'Wrap Skirt', price: '$50', img: 'images/Skirts/Wrap skirts.jpeg' },
+                { name: 'Yellow Shine', price: '$55', img: 'images/Skirts/Yellow shine.jpeg' },
             ],
             jeans: [
-                { name: 'Skinny Jeans', price: '$70', img: 'images/jeans1.jpg' },
-                { name: 'Bootcut Jeans', price: '$75', img: 'images/jeans2.jpg' },
+                { name: 'Baggy Jeans', price: '$70', img: 'images/jeans/Baggy Jean.jpg' },
+                { name: 'Bootcut Jeans', price: '$75', img: 'images/jeans/Bootcut Jean.jpg' },
+                { name: 'Boyfriend Jeans', price: '$70', img: 'images/jeans/Boyfriend Jean.jpeg' },
+                { name: 'Dark Blue Jeans', price: '$70', img: 'images/jeans/Dark Blue Jean.jpg' },
+                { name: 'Flare Jeans', price: '$70', img: 'images/jeans/Flare Jean.jpg' },
+                { name: 'High Waist', price: '$70', img: 'images/jeans/HIgh waistt.jpg' },
+                { name: 'Mom Jeans', price: '$70', img: 'images/jeans/Mom jeans.jpg' },
+                { name: 'Skinny Jeans', price: '$70', img: 'images/jeans/Skinny Jean.jpg' },
+                { name: 'Straight Jeans', price: '$70', img: 'images/jeans/Straight Jean.jpg' },
             ],
             blouses: [
-                { name: 'Floral Blouse', price: '$30', img: 'images/blouse1.jpg' },
-                { name: 'Silk Blouse', price: '$80', img: 'images/blouse2.jpg' },
+                { name: 'Black Knot', price: '$50', img: 'images/tops/black knot.jpeg' },
+                { name: 'Black Rose', price: '$40', img: 'images/tops/black rose.jpeg' },
+                { name: 'Blue Striped', price: '$30', img: 'images/tops/blue striped.jpeg' },
+                { name: 'Cotton Blend', price: '$35', img: 'images/tops/cotton blend.jpeg' },
+                { name: 'Floral Top', price: '$45', img: 'images/tops/floral top.jpeg' },
+                { name: 'Ruffle Layor', price: '$30', img: 'images/tops/Ruffle Layor.jpeg' },
+                { name: 'Striped Top', price: '$35', img: 'images/tops/striped top.jpeg' },
+                { name: 'Tank top', price: '$25', img: 'images/tops/Tank top.webp' },
+                { name: 'White Floral', price: '$30', img: 'images/tops/white floral.jpeg' },
             ]
         };
 
-        // Dynamically display products based on category
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function addToCart(name, price, img) {
+            const product = { name, price, img };
+            cart.push(product);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${name} has been added to your cart!`);
+        }
+
         function displayProducts(category) {
             const productContainer = document.getElementById('product-list');
+            productContainer.innerHTML = ''; // Clear existing content
+
             const productCategory = products[category];
 
             if (productCategory) {
@@ -92,6 +126,7 @@
                         <img src="${product.img}" alt="${product.name}">
                         <h3>${product.name}</h3>
                         <p>${product.price}</p>
+                        <button class="add-to-cart" onclick="addToCart('${product.name}', '${product.price}', '${product.img}')">Add to Cart</button>
                     `;
                     productContainer.appendChild(productDiv);
                 });
@@ -100,14 +135,12 @@
             }
         }
 
-        // Call function to display products
         if (category) {
             displayProducts(category);
         } else {
             document.getElementById('product-list').innerHTML = '<p>Invalid category.</p>';
         }
 
-        // Call function to highlight the active link
         setActiveLink();
     </script>
 </body>

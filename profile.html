@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Store</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <style>
+        .header .logo a {
+            font-family: 'Brush Script MT', cursive;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">Tredyne</a>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html" class="home-link">Home</a></li>
+                <li><a href="shop.html" class="shop-link">Shop</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="cart.html"><img src="images/cart-icon.png" alt="Cart" class="cart-icon"></a></li>
+                <li><a href="profile.html"><img src="images/profile-icon.png" alt="Profile" class="profile-icon"></a></li>
+            </ul>
+        </nav>
+    </header>
+<main>
+    <h1>Sign In</h1>
+    <form id="sign-in-form">
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" required>
+        <button type="submit">Sign In</button>
+    </form>
+    <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
+</main>
+
+<script>
+    document.getElementById('sign-in-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        // Mock authentication check
+        if (email === 'test@example.com' && password === 'password') {
+            alert('Signed in successfully!');
+            localStorage.setItem('user', JSON.stringify({ email }));
+            window.location.href = 'index.html';
+        } else {
+            alert('Invalid credentials.');
+        }
+    });
+</script>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <p>&copy; 2024 Tredyne. All Rights Reserved.</p>
+        <div class="social-media">
+            <a href="#">Facebook</a> | <a href="#">Instagram</a>
+        </div>
+    </div>
+</footer>
