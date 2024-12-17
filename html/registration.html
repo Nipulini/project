@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Store Registration</title>
+    <link rel="stylesheet" href="../styles/reg.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">Tredyne</a>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html" class="home-link">Home</a></li>
+                <li><a href="shop.html" class="shop-link">Shop</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Registration Form -->
+    <div class="registration-container">
+        <h2>Signup</h2>
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+                <div class="error" id="usernameError"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <div class="error" id="emailError"></div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+                <div class="error" id="passwordError"></div>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <div class="error" id="confirmPasswordError"></div>
+            </div>
+            <div class="form-group">
+                <button type="submit">Register</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('registrationForm');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let valid = true;
+
+            const username = document.getElementById('username');
+            const email = document.getElementById('email');
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirmPassword');
+
+            const usernameError = document.getElementById('usernameError');
+            const emailError = document.getElementById('emailError');
+            const passwordError = document.getElementById('passwordError');
+            const confirmPasswordError = document.getElementById('confirmPasswordError');
+
+            usernameError.textContent = '';
+            emailError.textContent = '';
+            passwordError.textContent = '';
+            confirmPasswordError.textContent = '';
+
+            if (username.value.trim() === '') {
+                valid = false;
+                usernameError.textContent = 'Username is required.';
+            }
+
+            if (email.value.trim() === '' || !email.value.includes('@')) {
+                valid = false;
+                emailError.textContent = 'Please enter a valid email.';
+            }
+
+            if (password.value.length < 6) {
+                valid = false;
+                passwordError.textContent = 'Password must be at least 6 characters long.';
+            }
+
+            if (password.value !== confirmPassword.value) {
+                valid = false;
+                confirmPasswordError.textContent = 'Passwords do not match.';
+            }
+
+            if (valid) {
+                alert('Registration successful!');
+                form.reset();
+                
+                // Redirect to login page
+                window.location.href = 'login.html';  // Replace 'login.html' with your actual login page URL
+            }
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Tredyne. All Rights Reserved.</p>
+            <div class="social-media">
+                <a href="#">Facebook</a> | <a href="#">Instagram</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
